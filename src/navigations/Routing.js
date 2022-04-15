@@ -1,37 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import { createNativeStackNavigator} from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native';
-import AsyncStorage  from '@react-native-async-storage/async-storage';
+import useStorage from '../hooks/useStorage.js';
 import OnBoarding from '../pages/OnBoarding.js';
 import Login from '../pages/Login.js'
+import Register from '../pages/Register.js'
 
 const Stack = createNativeStackNavigator()
 
 const Routing = () => {
 
-  const [data, setData] = useState(null)
-
-  //TODO: CUSTOM HOOK
-  useEffect(()=> {
-
-    const getStorage = async () => {
-      try {
-        const jsonValue = await AsyncStorage.getItem('@isSkipBoarding')
-        setData(jsonValue != null ? JSON.parse(jsonValue) : null)
-      } catch(e) {
-      }
-    }
-    getStorage()
-  })
+  const auth = useStorage('@isSkipBoarding')
 
   return ( 
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown:false }}>
         {
-          data ? 
-          <Stack.Screen name='Login' component={Login}/> :
+          auth ? 
+          <Stack.Screen name='Login' component={Login}/> : 
           <Stack.Screen name='onBoarding' component={OnBoarding}/>
         }
+        <Stack.Screen name='Register' component={Register}/>  
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -9,7 +9,7 @@ export default [
     id: 2,
     title: 'Mira YouTube',
     description: 'Disfruta de la experiencia con videos de tu elección para compartir en grupo!!',
-    image: require('../assets/images/Video-upload-rafiki.png')
+    image: require('../assets/images/Video-tutorial-bro.png')
   },
   {
     id: 3,

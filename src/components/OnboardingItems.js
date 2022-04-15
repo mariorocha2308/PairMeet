@@ -1,22 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useWindowDimensions } from 'react-native';
 import { View, Text, Image} from 'dripsy';
-import AppLoading from 'expo-app-loading';
-import useFonts from '../hooks/useFonts.js'
 
 const OnBoardingItems = ({item}) => {
 
   const { width } = useWindowDimensions();
-  const [IsReady, SetIsReady] = useState(false);   
-  const LoadFonts = async () => {
-    await useFonts();
-  };
-    
-  if (!IsReady) {
-    return (
-      <AppLoading startAsync={LoadFonts} onFinish={() => SetIsReady(true)} onError={() => {}}/>
-    );
-  }
 
   return ( 
     <View style={[{ width }]}
